@@ -1,39 +1,24 @@
 import { DefaultTheme } from 'styled-components'
 
-import { Device } from 'types/styled'
+import { Device } from 'types/theme'
 
-/**
- * The `globalValues` object stores configuration settings related to the UI design breakpoints, typography, and some common CSS properties.
- *
- * @property {object} breakpoint - Contains responsive design breakpoint values and associated utility functions.
- * @property {object} typography - Defines the typography settings including font families, font sizes, and font weights for various text elements.
- * @property {string} maxWidth - Maximum width value for container elements.
- * @property {string} blur - Blur effect value for styling elements.
- * @property {string} borderRadius - Border radius value for rounded corners on elements.
- */
-export const globalValues = {
+export const commonValues = {
     blur: '10px',
     borderRadius: '2px',
+    maxWidth: '1440px',
     breakpoint: {
-        values: {
-            xs: 0,
-            sm: 425,
-            md: 768,
-            lg: 1024,
-            xl: 1440,
-        },
+        values: { xs: 0, sm: 425, md: 768, lg: 1024, xl: 1440 },
         unit: 'px',
-        up: function (device: Device | number) {
+        up(device: Device | number) {
             return `only screen and (min-width: ${typeof device === 'number' ? device : this.values[device]}${this.unit})`
         },
-        down: function (device: Device | number) {
+        down(device: Device | number) {
             return `only screen and (max-width: ${typeof device === 'number' ? device : this.values[device]}${this.unit})`
         },
-        between: function (start: Device | number, end: Device | number) {
+        between(start: Device | number, end: Device | number) {
             return `only screen and (min-width: ${typeof start === 'number' ? start : this.values[start]}${this.unit}) and (max-width: ${typeof end === 'number' ? end : this.values[end]}${this.unit})`
         },
     },
-    maxWidth: '1440px',
     spacing: (...values: [number, number?, number?, number?]) =>
         values
             .slice(0, 4)
@@ -126,29 +111,11 @@ export const globalValues = {
     },
 }
 
-/**
- * An object representing the configuration for a light theme.
- *
- * @type {DefaultTheme}
- * @property {string} mode - The theme mode, set to 'light'.
- * @property {Object} colors - The color palette used in the light theme.
- * @property {string} colors.main - The main color used in the theme.
- * @property {string} colors.secondary - The secondary color used in the theme.
- * @property {string} colors.text - The primary text color.
- * @property {string} colors.textSecondary - The secondary text color.
- * @property {string} colors.background - The primary background color.
- * @property {string} colors.backgroundSecondary - The secondary background color.
- * @property {string} colors.border - The border color.
- * @property {string} colors.error - The color used to indicate errors.
- * @property {string} colors.success - The color used to indicate success.
- * @property {string} colors.info - The color used to present informational messages.
- * @property {Object} globalValues - Other global theme configuration values.
- */
-export const lightTheme: DefaultTheme = Object.freeze({
+const lightTheme: DefaultTheme = {
     mode: 'light',
     colors: {
-        main: '#8e1cde',
-        secondary: '#a3e66c',
+        main: '#587498',
+        secondary: '#d2bea0',
         text: '#000000',
         textSecondary: '#ffffff',
         background: '#ffffff',
@@ -158,32 +125,14 @@ export const lightTheme: DefaultTheme = Object.freeze({
         success: '#4acc4a',
         info: '#b5b5ff',
     },
-    ...globalValues,
-})
+    ...commonValues,
+}
 
-/**
- * An object representing the configuration for a dark theme.
- *
- * @type {DefaultTheme}
- * @property {string} mode - The theme mode, set to 'dark'.
- * @property {Object} colors - The color palette used in the dark theme.
- * @property {string} colors.main - The main color used in the theme.
- * @property {string} colors.secondary - The secondary color used in the theme.
- * @property {string} colors.text - The primary text color.
- * @property {string} colors.textSecondary - The secondary text color.
- * @property {string} colors.background - The primary background color.
- * @property {string} colors.backgroundSecondary - The secondary background color.
- * @property {string} colors.border - The border color.
- * @property {string} colors.error - The color used to indicate errors.
- * @property {string} colors.success - The color used to indicate success.
- * @property {string} colors.info - The color used to present informational messages.
- * @property {Object} globalValues - Other global theme configuration values.
- */
-export const darkTheme: DefaultTheme = Object.freeze({
+const darkTheme: DefaultTheme = {
     mode: 'dark',
     colors: {
-        main: '#8e1cde',
-        secondary: '#a3e66c',
+        main: '#587498',
+        secondary: '#d2bea0',
         text: '#ffffff',
         textSecondary: '#000000',
         background: '#282828',
@@ -193,5 +142,13 @@ export const darkTheme: DefaultTheme = Object.freeze({
         success: '#64be64',
         info: '#b5b5ff',
     },
-    ...globalValues,
-})
+    ...commonValues,
+}
+
+export const defaultTheme = (isDarkTheme: boolean): DefaultTheme => {
+    if (isDarkTheme) {
+        return darkTheme
+    }
+
+    return lightTheme
+}

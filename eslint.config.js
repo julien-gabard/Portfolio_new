@@ -31,7 +31,6 @@ export default tsEslint.config(
             react,
         },
         rules: {
-            ...reactHooks.configs.recommended.rules,
             'react-refresh/only-export-components': [
                 'warn',
                 { allowConstantExport: true },
@@ -89,6 +88,7 @@ export default tsEslint.config(
                     allowSeparatedGroups: true,
                 },
             ],
+            ...reactHooks.configs.recommended.rules,
             ...react.configs.recommended.rules,
             ...react.configs['jsx-runtime'].rules,
         },

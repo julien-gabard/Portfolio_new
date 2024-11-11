@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 
-export const StyledMain = styled.main(({ theme }) => ({
-    flex: 1,
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: theme.spacing(2),
-}))
+export const StyledMain = styled.main`
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: ${({ theme }) => theme.spacing(2)};
+`

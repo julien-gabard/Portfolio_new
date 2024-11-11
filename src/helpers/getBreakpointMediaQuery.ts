@@ -1,7 +1,7 @@
-import { Device } from 'types/styled'
-import { globalValues } from 'config/theme'
+import { commonValues } from 'config/theme'
+import { Device } from 'types/theme'
 
-const { breakpoint } = globalValues
+const { breakpoint } = commonValues
 
 /**
  * Generates a media query string based on the provided device size.

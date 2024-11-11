@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 
-import { Device } from 'types/styled'
+import { Device } from 'types/theme'
 import getBreakpointMediaQuery from 'helpers/getBreakpointMediaQuery'
 import getMediaQueryMatches from 'helpers/getMediaQueryMatches'
 import isWindowUndefined from 'helpers/isWindowUndefined'

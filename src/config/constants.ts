@@ -27,3 +27,11 @@ export const SUPPORTED_LANGUES: Record<'en' | 'fr', string> = Object.freeze({
  * @constant {string}
  */
 export const DARK_THEME_KEY = 'isDarkTheme'
+
+export const FLAGS_REACT_ROUTER_V7 = {
+    v7_relativeSplatPath: true,
+    v7_fetcherPersist: true,
+    v7_normalizeFormMethod: true,
+    v7_partialHydration: true,
+    v7_skipActionErrorRevalidation: true,
+}

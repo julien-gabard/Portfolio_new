@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import { lazy } from 'react'
 
 import ErrorPage from 'pages/ErrorPage'
+import { FLAGS_REACT_ROUTER_V7 } from 'config/constants'
 import MainLayout from 'layout/MainLayout'
 
 /**
@@ -14,17 +15,22 @@ import MainLayout from 'layout/MainLayout'
  * - The `errorElement` property defines the component to be displayed in case of routing errors.
  * - The `children` array holds the route configurations, including their components.
  */
-const Router = createBrowserRouter([
+const Router = createBrowserRouter(
+    [
+        {
+            element: <MainLayout />,
+            errorElement: <ErrorPage />,
+            children: [
+                {
+                    index: true,
+                    Component: lazy(() => import('../pages/HomePage')),
+                },
+            ],
+        },
+    ],
     {
-        element: <MainLayout />,
-        errorElement: <ErrorPage />,
-        children: [
-            {
-                index: true,
-                Component: lazy(() => import('../pages/HomePage')),
-            },
-        ],
+        future: FLAGS_REACT_ROUTER_V7,
     },
-])
+)
 
 export default Router
